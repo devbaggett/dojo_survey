@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dojo_survey_style.css') }}">
+</head>
+<body>
+	<h1>Dojo Survey</h1>
+    <!-- with messages here helps us declare a variable in our template that we can use within a specific scope -->
+  {% with messages = get_flashed_messages() %}
+    <!-- check if there are even any messages that came back from the get_flashed_messages() function -->
+    {% if messages %}
+        <!-- loop through all messages -->
+        {% for message in messages %}
+            <!-- print the messages one by one each in a paragraph tag -->
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+    <form action="/results" method="POST">
+    <div id="forms">
+        <label>Name: </label>
+        <input type="text" name="name" id="form_fields">
+   	</div>
+   	<div id="forms">
+        <label>Dojo Location</label>
+        <select name="location" id="form_fields">
+   	 		<option value="San Jose">San Jose</option>
+    		<option value="Seattle">Seattle</option>
+    		<option value="Dallas">Dallas</option>
+    		<option value="Los Angeles">Los Angeles</option>
+    		<option value="Chicago">Chicago</option>
+    		<option value="DC">Washington D.C.</option>
+    		<option value="Tulsa">Tulsa</option>
+		</select>
+	</div>
+	<div id="forms">
+		<label>Favorite Language</label>
+		<select name="language" id="form_fields">
+   	 		<option value="Python">Python</option>
+    		<option value="C#">C#</option>
+    		<option value="Swift">Swift</option>
+    		<option value="Ruby">Ruby</option>
+    		<option value="JavaScript">JavaScript</option>
+    		<option value="Java">Java</option>
+		</select>
+		<div>
+			<textarea name="description"></textarea>
+		</div>
+	</div>
+	
+        <div id="submit_button">
+        	<input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>
